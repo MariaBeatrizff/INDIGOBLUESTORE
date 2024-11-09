@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos Comprados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            color: #3f51b5;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Caixa lateral com informações do cliente */
+        .info-box {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .info-box h2 {
+            font-size: 1.2em;
+            color: #4f51b5;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+        }
+
+        .info-box strong {
+            color: #333;
+        }
+
+        .info-box .btn {
+            background-color: #4f51b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1.1em;
+        }
+
+        .info-box .btn:hover {
+            background-color: #3a0068;
+        }
+
+        /* Estilo da imagem de avatar */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Lista de produtos comprados */
+        .product-list {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+        }
+
+        .product-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-item h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #4f51b5;
+        }
+
+        /* Botão de logout ajustado para tamanho padrão */
+        .logout-button {
+            background-color: #4f51b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;  /* Ajustado para tamanho padrão */
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1em; /* Ajuste no tamanho da fonte */
+        }
+
+        .logout-button:hover {
+            background-color: #3a0068;
+        }
+
+        /* Ajuste para dispositivos móveis */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-box, .product-list {
+                width: 100%;
+                max-width: 600px;
+            }
+        }
+
+        /* Estilo para as mensagens de boas-vindas */
+        .welcome-message {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Caixa lateral com informações do cliente -->
+        <div class="info-box" id="clientInfo">
+            <!-- Imagem de avatar do cliente -->
+            <img src="avatar.png" alt="Avatar do Cliente" class="avatar">
+
+            <h2>Informações do Cliente</h2>
+            <p><strong>Nome:</strong> Michael</p>
+            <p><strong>Email:</strong> Michael@gmail.com</p>
+            <p><strong>Telefone:</strong> (00) 90000-0000</p>
+            <button class="btn" onclick="alterarDados()">Alterar Dados</button>
+        </div>
+
+        <!-- Lista de produtos comprados -->
+        <div class="product-list" id="productList">
+            <div class="welcome-message">
+               
+            </div>
+            <!-- Produtos comprados serão inseridos aqui -->
+        </div>
+    </div>
+
+    <button class="logout-button" onclick="logout()">Sair</button>
+
+    <script>
+        // Produtos comprados com detalhes corretos
+        const produtosComprados = [
+            {
+                nome: 'Photocard',
+                preco: '10.00',
+                status: 'Em Produção',
+                codigoProduto: 'P12345',
+                prazoEnvio: '5 dias úteis',
+                codigoRastreio: 'BR1234567890'
+            },
+            {
+                nome: 'Placa MDF',
+                preco: '80.00',
+                status: 'Em produção',
+                codigoProduto: 'P67890',
+                prazoEnvio: '7 dias úteis',
+                codigoRastreio: 'BR0987654321'
+            }
+        ];
+
+        // Salva produtos comprados no localStorage
+        function salvarProdutosComprados() {
+            localStorage.setItem('produtosComprados', JSON.stringify(produtosComprados));
+        }
+
+        // Carrega e exibe os produtos comprados com status, código do produto, prazo de envio e código de rastreio
+        function carregarProdutosComprados() {
+            const productList = document.getElementById('productList');
+            const produtos = JSON.parse(localStorage.getItem('produtosComprados')) || [];
+
+            if (produtos.length === 0) {
+                productList.innerHTML = '<p>Você ainda não comprou nenhum produto.</p>';
+            } else {
+                productList.innerHTML = ''; // Limpa a lista antes de adicionar os itens
+                produtos.forEach(produto => {
+                    const productItem = document.createElement('div');
+                    productItem.classList.add('product-item');
+                    productItem.innerHTML = `
+                        <h3>${produto.nome}</h3>
+                        <p>Preço: R$ ${produto.preco}</p>
+                        <p>Status: ${produto.status}</p>
+                        <p>Código do Produto: ${produto.codigoProduto}</p>
+                        <p>Prazo de Envio: ${produto.prazoEnvio}</p>
+                        <p>Código de Rastreio: ${produto.codigoRastreio}</p>
+                    `;
+                    productList.appendChild(productItem);
+                });
+            }
+        }
+
+        // Função de logout
+        function logout() {
+            localStorage.removeItem('usuario'); // Remove os dados do usuário
+            localStorage.removeItem('produtosComprados'); // Remove os dados dos produtos
+            window.location.href = 'index.html'; // Redireciona para a página index.html
+        }
+
+        // Função para alterar dados do cliente (direciona para outra página)
+        function alterarDados() {
+            window.location.href = 'alterar_dados.html'; // Página onde o usuário pode alterar seus dados
+        }
+
+        // Inicializa os produtos no localStorage se não estiverem salvos
+        if (!localStorage.getItem('produtosComprados')) {
+            salvarProdutosComprados();
+        }
+
+        // Carrega os produtos ao abrir a página
+        window.onload = carregarProdutosComprados;
+    </script>
+</body>
+</html>

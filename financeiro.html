@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a0068;
+        }
+
+        .sidebar .logout-button {
+            background-color: #d9534f;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .sidebar .logout-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            color: #4f51b5;
+            margin-bottom: 20px;
+        }
+
+        /* Table styles */
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table thead {
+            background-color: #4f51b5;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            font-weight: bold;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        table th:first-child, table td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        table th:last-child, table td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Chart container */
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            Fique por dentro das novidades da loja.</p>
+            <img src="avatar.png" alt="Avatar" style="width:100px; border-radius: 50%; margin: 10px 0;">
+            <h3>Função: CEO</h3>
+            <a href="admin_dashboard.html">Início</a>
+            <a href="financeiro.html">Financeiro </a>
+            <a href="estoque.html">Estoque</a>
+            <a href="producao.html">Pedidos em Produção</a>
+            <a href="funcionarios.html">Gerenciar Funcionários</a>
+        </div>
+        <button class="logout-button" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Relatório Financeiro de Vendas</h1>
+
+        <!-- Financial Report Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID do Produto</th>
+                        <th>Nome do Produto</th>
+                        <th>Quantidade Vendida</th>
+                        <th>Receita (R$)</th>
+                    </tr>
+                </thead>
+                <tbody id="reportTableBody">
+                    <!-- Linhas da tabela preenchidas pelo JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Total de Receita:</th>
+                        <th id="totalRevenue">R$ 0,00</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Dados de vendas (exemplo)
+        const vendas = [
+
+            { id: 4, nome: "Kit 2", quantidade: 40, receita: 1600 },
+            { id: 7, nome: "Placa MDF", quantidade: 50, receita: 1000 },
+            { id: 2, nome: "Kit 1", quantidade:20, receita: 600 },
+            { id: 8, nome: "Pôster", quantidade: 30, receita: 300 },
+            { id: 6, nome: "Photocard", quantidade: 40, receita: 200 },
+
+        ];
+
+        // Função para preencher a tabela de relatório financeiro
+        function preencherTabela() {
+            const tbody = document.getElementById("reportTableBody");
+            let totalReceita = 0;
+            
+            vendas.forEach(venda => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${venda.id}</td>
+                    <td>${venda.nome}</td>
+                    <td>${venda.quantidade}</td>
+                    <td>R$ ${venda.receita.toFixed(2)}</td>
+                `;
+                tbody.appendChild(tr);
+                totalReceita += venda.receita;
+            });
+
+            document.getElementById("totalRevenue").innerText = `R$ ${totalReceita.toFixed(2)}`;
+        }
+
+        // Função para criar o gráfico de vendas
+        function criarGrafico() {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            const nomesProdutos = vendas.map(venda => venda.nome);
+            const receitas = vendas.map(venda => venda.receita);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: nomesProdutos,
+                    datasets: [{
+                        label: 'Receita (R$)',
+                        data: receitas,
+                        backgroundColor: 'rgba(75, 81, 181, 0.7)',
+                        borderColor: 'rgba(75, 81, 181, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Função de logout
+        function logout() {
+            localStorage.removeItem('usuario');
+            window.location.href = 'index.html';
+        }
+
+        // Inicialização da tabela e do gráfico ao carregar a página
+        window.onload = function() {
+            preencherTabela();
+            criarGrafico();
+        };
+    </script>
+
+</body>
+</html>

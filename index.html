@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDIGO BLUE STORE</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-bar {
+            background-color: #3f51b5; 
+            color: white;
+            text-align: center;
+            padding: 10px 0; 
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            margin-top: 20px; 
+        }
+
+        .logo-container img {
+            width: 150px;
+            height: auto; 
+        }
+
+        .navbar {
+            background-color: #3f51b5; 
+            color: white;
+            width: 100%;
+            height: 70px; 
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            flex: 1;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em; 
+        }
+
+        /* Posicionando "Carrinho" e "Minha Conta" no lado direito */
+        .navbar .nav-links-right {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Empurra os itens para a direita */
+        }
+
+        .navbar .nav-links-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1.1em; 
+        }
+
+        .navbar .nav-links-right a img {
+            width: 20px; /* Define o tamanho da imagem */
+            height: 20px;
+            margin-right: 8px; /* Espaço entre a imagem e o texto */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product-card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #3f51b5; 
+        }
+
+        .product-card p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .add-to-cart {
+            background-color: #3f51b5; 
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2c387e; 
+        }
+
+        footer {
+            background-color: #ADD8E6; 
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* Estilo para a seção principal com texto e avatar lado a lado */
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .content-container .text {
+            max-width: 60%;
+            text-align: left; /* Alinhando o texto à esquerda */
+        }
+
+        .content-container .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Ajustes de responsividade */
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-container .text {
+                max-width: 100%;
+                text-align: center; /* Alinhando o texto no centro para telas menores */
+                margin-bottom: 20px;
+            }
+
+            .content-container .avatar {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <p>Promoção: Compre 2 e leve 3! Válido até o final do mês!</p>
+    </div>
+
+    <!-- Logo centralizada -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo da Loja">
+    </div>
+
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="Imas.html">Imãs</a>
+            <a href="placa_mdf.html">Placa MDF</a>
+            <a href="photocard.html">Photocard</a>
+            <a href="poster.html">Poster</a>
+            <a href="promocao.html">Promoção</a>
+            <a href="totem.html">Totem</a>
+        </div>
+
+        <div class="nav-links-right">
+            <a href="login.html">
+                <img src="avatar.png" width="20" height="20" alt="">
+                <p>Minha Conta</p>                
+            </a>
+            <a href="carrinho.html">
+                <img src="carrinho.png" alt="Carrinho">
+                <p>Carrinho</p>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <section>
+            <h2>Bem-vindo a INDIGO BLUE STORE!</h2>
+            <div class="content-container">
+                <div class="text">
+                    <p>Juliana é uma empresária dedicada e dona da Indigo Blue Store, uma loja especializada em produtos de K-pop. Além de ser uma grande fã de BL (Boy's Love), Juliana mantém um perfil extremamente profissional no gerenciamento de sua loja, sempre focada em oferecer o melhor para seus clientes e em fazer sua empresa crescer no mercado de entretenimento pop.</p>
+                </div>
+                <div>
+                <img src="avatar.png" alt="Avatar" class="avatar"> 
+                <h3>Juliana</h3>
+                <p>Empresária</p><div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; INDIGO BLUE STORE</p>
+    </footer>
+</body>
+</html>

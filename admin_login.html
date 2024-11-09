@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login do Administrador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Login do Administrador</h1>
+    </header>
+
+    <main>
+        <form id="admin-login-form" onsubmit="return autenticarAdmin()">
+            <label for="admin-username">Usuário:</label>
+            <input type="text" id="admin-username" required>
+
+            <label for="admin-password">Senha:</label>
+            <input type="password" id="admin-password" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </main>
+
+    <script>
+        function autenticarAdmin() {
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+
+            if (username === 'admin' && password === '12345') {
+                window.location.href = 'admin_dashboard.html';
+                return false;
+            } else {
+                alert('Usuário ou senha incorretos!');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

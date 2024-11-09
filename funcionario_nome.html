@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionário - Paula</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .welcome-message {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #d1d1e0;
+        }
+
+        .sidebar h3 {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #d1d1e0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a0068;
+        }
+
+        .sidebar .logout-button {
+            background-color: #d9534f;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1em;
+        }
+
+        .sidebar .logout-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            color: #4f51b5;
+            margin-bottom: 20px;
+        }
+
+        /* Table styles */
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table thead {
+            background-color: #4f51b5;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            font-weight: bold;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        table th:first-child, table td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        table th:last-child, table td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <h2>Olá, Maria!</h2>
+            <p class="welcome-message">Seja bem-vinda! Confira as informações dos seus pedidos e vendas.</p>
+            <img src="avatar.png" alt="Avatar" style="width:100px; border-radius: 50%; margin: 10px 0;">
+            <h3>Função: Atendente</h3>
+            <a href="funcionario_dashboard.html">Início</a>
+            <a href="funcionario_nome.html">Pedidos e Vendas</a>
+        </div>
+        
+        <!-- Botão de sair -->
+        <button class="logout-button" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <h1>Relatório de Pedidos e Vendas</h1>
+        
+        <div class="table-container">
+            <table>
+            <h2>Pedidos em produção</h2>
+                <thead>
+                    <tr>
+                        <th>Nome Cliente</th>
+                        <th>ID do Pedido</th>
+                        <th>Produto</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td>Michael</td>
+                        <td>001</td>
+                        <td>Placa MDF</td>
+                        <td>10/10/2024</td>
+                        <td>Em produção</td>
+                    </tr>
+                    <tr>
+                        <td>Beatriz</td>
+                        <td>003</td>
+                        <td>Poster</td>
+                        <td>05/10/2024</td>
+                        <td>Em Produção</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Vendas Recentes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID da Venda</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>V004</td>
+                        <td>Photocard</td>
+                        <td>2</td>
+                        <td>10/11/2024</td>
+                        <td>R$ 10,00</td>
+                    </tr>
+                    <tr>
+                        <td>V005</td>
+                        <td>Kit 1</td>
+                        <td>1</td>
+                        <td>02/10/2024</td>
+                        <td>R$ 40,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Função de logout
+        function logout() {
+            window.location.href = "index.html"; // Redireciona para a página inicial após o logout
+        }
+    </script>
+
+</body>
+</html>
+

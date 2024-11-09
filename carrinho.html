@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .top-bar {
+            background-color: #3f51b5;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .logo-container img {
+            width: 150px;
+            height: auto;
+        }
+        .navbar {
+            background-color: #3f51b5;
+            color: white;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+        .nav-links-right {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-links-right img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+        .cart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffffff;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .cart-container h1 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+        }
+        .product-list {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .product-item p {
+            margin: 0;
+            color: #333;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #3f51b5;
+            text-align: right;
+            margin-top: 10px;
+        }
+        .payment-methods, .shipping-methods {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .payment-methods h2, .shipping-methods h2 {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .payment-methods select, .shipping-methods select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .shipping-methods button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3f51b5;
+            color: white;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .shipping-methods button:hover {
+            background-color: #303f9f;
+        }
+        /* Estilos para o cálculo de frete e botões */
+    .frete {
+        margin-bottom: 20px;
+    }
+
+    .input-frete {
+        padding: 8px;
+        margin-right: 10px;
+        font-size: 1em;
+        width: 180px;
+    }
+
+    .calcular-frete-btn, .finalizar-compra-btn {
+        background-color: #3f51b5;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .calcular-frete-btn:hover, .finalizar-compra-btn:hover {
+        background-color: #2c387e;
+    }
+
+    .payment-methods label {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .frete-resultado {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #3f51b5;
+    }
+</style>
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p>Promoção: Compre 2 e leve 3! Válido até o final do mês!</p>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo da Loja">
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="Imas.html">Imãs</a>
+            <a href="placa_mdf.html">Placa MDF</a>
+            <a href="photocard.html">Photocard</a>
+            <a href="promocao.html">Promoção</a>
+            <a href="totem.html">Totem</a>
+        </div>
+        <div class="nav-links-right">
+            <a href="login.html">
+                <img src="avatar.png" alt="Minha Conta">
+                Minha Conta
+            </a>
+            <a href="carrinho.html">
+                <img src="carrinho.png" alt="Carrinho">
+                <p>Carrinho</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart-container">
+        <h1>Seu Carrinho</h1>
+
+        <!-- Lista de Produtos -->
+        <div class="product-list">
+            <div class="product-item">
+                <p>Produto</p>
+                <p>Referencia</p>
+                <p>ID</p>
+                <p>Quantidade</p>
+                <p>Valor</p>
+            </div>
+            <div class="product-item">
+                <img src="photocards/pcbts.jpg" width="80" height="80">
+                <p>Photocard</p>
+                <p>Kpop</p>
+                <p>06</p>
+                <p>2</p>
+                <p>R$10,00</p>
+            </div>
+            <div class="product-item">
+                <img src="placa/skz.png" width="80" height="80">
+                <p>Placa MDF Decorativa</p>
+                <p>Kpop</p>
+                <p>07</p>
+                <p>4</p>
+                <p>R$80,00</p>
+            </div>
+            <p class="total">Total: R$90,00</p>
+        </div>
+
+       <!-- Cálculo de Frete -->
+<div class="frete">
+    <label for="cep">Digite seu CEP para calcular o frete:</label>
+    <input type="text" id="cep" name="cep" class="input-frete" placeholder="CEP" required>
+    <button type="button" onclick="calcularFrete()" class="calcular-frete-btn">Calcular Frete</button>
+    <div id="freteResultado" class="frete-resultado"></div>
+</div>
+
+<!-- Opções de Pagamento -->
+<div class="payment-methods">
+    <p><h3>Formas de pagamento </h3></p>
+    <label>
+        <input type="radio" name="pagamento" value="boleto" required> Boleto Bancário
+    </label>
+    <label>
+        <input type="radio" name="pagamento" value="cartao" required> Cartão de Crédito
+    </label>
+    <label>
+        <input type="radio" name="pagamento" value="pix" required> PIX
+    </label>
+</div>
+
+<button type="submit" class="finalizar-compra-btn">Finalizar Compra</button>
+
+<script>
+    // Função para simular o cálculo de frete com base no CEP
+    function calcularFrete() {
+        var cep = document.getElementById('cep').value;
+
+        // Validação simples de CEP
+        if (cep.length !== 8 || isNaN(cep)) {
+            alert("Por favor, insira um CEP válido!");
+            return;
+        }
+
+        // Aqui você pode integrar uma API de cálculo de frete real
+        // Para fins de exemplo, vamos simular um valor de frete
+        var freteSimulado = 15.00;  // Exemplo de valor fixo de frete
+
+        // Exibir o valor do frete
+        var freteResultado = document.getElementById('freteResultado');
+        freteResultado.textContent = "Frete: R$ " + freteSimulado.toFixed(2);
+
+        // Você pode adicionar o valor do frete ao valor total da compra
+        // Por exemplo: totalCompra += freteSimulado;
+    }
+</script>
+
+
+    
+
+</body>
+</html>

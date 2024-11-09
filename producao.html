@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produção - Dashboard Administrativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #3f51b5;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar h2 {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 1.1em;
+            width: 100%;
+            text-align: center;
+            border-radius: 4px;
+            margin: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a0068;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1em;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3F51B5;
+            color: white;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        a.cliente-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a.cliente-link:hover {
+            color: #3F51B5;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background-color: #3f51b5; 
+            color: white;
+            position: relative;
+            bottom: 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Olá, Juliana</h2>
+            <img src="avatar.png" alt="Avatar">
+            <h3> Função: CEO</h3>
+            <a href="admin_dashboard.html">Início</a>
+            <a href="financeiro.html">Financeiro </a>
+            <a href="estoque.html">Estoque</a>
+            <a href="producao.html">Pedidos em Produção</a>
+            <a href="funcionarios.html">Gerenciar Funcionários</a>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <h1>PEDIDOS EM PRODUÇÃO</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>ID do Pedido</th>
+
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Michael</a></td>
+                    <td>001</td>
+                    <td> <a href="detalhes_cliente_michael.html" class="cliente-link">Em Produção</td>
+                </tr>
+                <tr>
+                    <td>Pavel</a></td>
+                    <td>002</td>
+                    <td><a href="detalhes_cliente_pavel.html" class="cliente-link">Em Produção</td>
+                </tr>
+                <tr>
+                    <td>Beatriz</a></td>
+                    <td>003</td>
+                    <td><a href="detalhes_cliente_beatriz.html" class="cliente-link">Aguardando Material</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

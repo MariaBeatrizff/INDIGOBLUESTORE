@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início de Sessão</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('fundo.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .top-right-login {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .top-right-login a {
+            color: #4B0082; 
+            font-weight: bold;
+            text-decoration: none;
+            padding: 8px 12px;
+            border: 2px solid #4B0082;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .top-right-login a:hover {
+            background-color: #4B0082;
+            color: #fff;
+        }
+
+        h1 {
+            color: #4B0082; 
+        }
+
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4B0082;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3a0068;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #4B0082; 
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="login-container">
+        <form id="loginForm">
+            <label for="cpf">Login:</label>
+            <input type="text" id="cpf" name="cpf" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <button type="button" onclick="login()">Entrar</button>
+        </form>
+        <p id="errorMsg" style="color: red; display: none;">Credenciais incorretas</p>
+        <a href="recuperar_senha.html">Esqueci minha senha</a>
+        <div class="forgot-password">
+            <a href="cadastro.html">Cadastro</a>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const cpf = document.getElementById("cpf").value;
+            const senha = document.getElementById("senha").value;
+
+            // Verifica as credenciais para Admin
+            if (cpf === "00000000000" && senha === "00000000") {
+                window.location.href = "admin_dashboard.html"; // Redireciona para o dashboard do Admin
+            } 
+            // Verifica as credenciais para Funcionário
+            else if (cpf === "22222222222" && senha === "22222222") {
+                window.location.href = "funcionario_dashboard.html"; // Redireciona para o dashboard do Funcionário
+            } 
+            // Verifica as credenciais para Cliente
+            else if (cpf === "11111111111" && senha === "11111111") {
+                window.location.href = "produtos_comprados.html"; // Redireciona para a página de produtos comprados
+            } 
+            else {
+                // Exibe mensagem de erro se as credenciais estiverem incorretas
+                document.getElementById("errorMsg").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
+

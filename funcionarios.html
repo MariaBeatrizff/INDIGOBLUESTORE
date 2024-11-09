@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários da Loja</title>
+    <style>
+        /* Estilos gerais e reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 15px 0;
+        }
+
+        .sidebar h3 {
+            font-size: 1em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            margin: 10px 0;
+            width: 100%;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a0068;
+        }
+
+        .logout-button {
+            background-color: #d9534f;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            margin-top: auto;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            background-color: #ffffff;
+        }
+
+        .main-content h2 {
+            color: #3f51b5;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: left;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background-color: #3f51b5;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 10px;
+            color: #3f51b5;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .modal-content button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #3f51b5;
+        }
+
+        .close-btn {
+            background-color: #d9534f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <h2>Olá, Juliana</h2>
+            <img src="avatar.png" alt="Avatar">
+            <h3> Função: CEO</h3>
+            <a href="admin_dashboard.html">Início</a>
+            <a href="financeiro.html">Financeiro </a>
+            <a href="estoque.html">Estoque</a>
+            <a href="producao.html">Pedidos em Produção</a>
+            <a href="funcionarios.html">Gerenciar Funcionários</a>
+        </div>
+        <button class="logout-button" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>Funcionários da Loja</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Data de Nascimento</th>
+                    <th>Registro</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juliana</td>
+                    <td>CEO</td>
+                    <td>00/00/0000</td>
+                    <td>01</td>
+                    <td><button onclick="openModal('Juliana Silva', 'CEO', '01')" class="action-btn">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>Atendente</td>
+                    <td>00/00/0000</td>
+                    <td>02</td>
+                    <td><button onclick="openModal('Jeff', 'Atendente', '02')" class="action-btn">Editar</button></td>
+                </tr>
+                <tr>
+                    <td>Jeff</td>
+                    <td>Estoquista</td>
+                    <td>00/00/0000</td>
+                    <td>03</td>
+                    <td><button onclick="openModal('Maria', 'Estoquista', '03')" class="action-btn">Editar</button></td>
+                </tr>
+                <div><td><button onclick="openModal('Maria', 'Estoquista', '03')" class="action-btn">Adicionar Funcionário</button></td>
+        </div>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para editar funcionário -->
+     <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Adicionar novo Funcionário</h3>
+            <label for="editNome">Nome:</label>
+            <input type="text" id="editNome">
+            <label for="editCargo">Cargo:</label>
+            <input type="text" id="editCargo">
+            <label for="editRegistro">Registro:</label>
+            <input type="text" id="editRegistro">
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail">
+            <label for="editNascimento">Data de Nascimento:</label>
+            <input type="date" id="editNascimento">
+            <label for="editEntrada">Data de Entrada:</label>
+            <input type="date" id="editEntrada">
+            <button onclick="saveChanges()">Registrar</button>
+            <button onclick="closeModal()" class="close-btn">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal e preencher com os dados do funcionário selecionado
+        function openModal(nome, cargo, registro) {
+            document.getElementById('editNome').value = nome;
+            document.getElementById('editCargo').value = cargo;
+            document.getElementById('editRegistro').value = registro;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        // Função para fechar o modal
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        // Função para salvar as alterações feitas (pode ser adaptada para salvar no banco de dados)
+        function saveChanges() {
+            const nome = document.getElementById('editNome').value;
+            const cargo = document.getElementById('editCargo').value;
+            const registro = document.getElementById('editRegistro').value;
+            
+            console.log(`Alterações salvas para: ${nome}, ${cargo}, ${registro}`);
+            closeModal();
+        }
+    </script>
+</body>
+</html>

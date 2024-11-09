@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos existentes */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .top-bar {
+            background-color: #3f51b5; 
+            color: white;
+            text-align: center;
+            padding: 10px 0; 
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            margin-top: 20px; 
+        }
+        .logo-container img {
+            width: 150px; 
+            height: auto; 
+        }
+        .navbar {
+            background-color: #3f51b5; 
+            color: white;
+            width: 100%;
+            height: 70px; 
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            width: 100%;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em; 
+        }
+        footer {
+            background-color: #ADD8E6; 
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+        /* Estilos da página de pagamento */
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #3f51b5;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .mensagem {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: green;
+        }
+        .payment-option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .payment-option input {
+            margin-right: 10px;
+        }
+        .payment-details {
+            display: none;
+        }
+        button[type="submit"] {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <p>Promoção: Compre 2 e leve 3! Válido até o final do mês!</p>
+    </div>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo da Loja">
+    </div>
+
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="produtos.html">Produtos</a>
+            <a href="carrinho.html">Carrinho</a>
+            <a href="promocao.html">Promoções</a>
+            <a href="login.html">Minha Conta</a>
+        </div>
+    </div>
+
+    <main>
+        <h2>Detalhes do Pagamento</h2>
+        
+        <!-- Opções de pagamento -->
+        <div class="payment-option">
+            <input type="radio" id="cartao" name="paymentMethod" value="cartao" onclick="showDetails('cartaoDetails')" required>
+            <label for="cartao">Cartão de Crédito</label>
+        </div>
+        <div class="payment-option">
+            <input type="radio" id="boleto" name="paymentMethod" value="boleto" onclick="showDetails('boletoDetails')">
+            <label for="boleto">Boleto Bancário</label>
+        </div>
+
+        <!-- Formulário de pagamento com detalhes dinâmicos -->
+        <form id="form-pagamento">
+            <div id="cartaoDetails" class="payment-details">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+
+                <label for="cartao">Número do Cartão:</label>
+                <input type="text" id="cartao" required>
+
+                <label for="data-expiracao">Data de Expiração:</label>
+                <input type="text" id="data-expiracao" placeholder="MM/AA" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" required>
+            </div>
+
+            <div id="boletoDetails" class="payment-details">
+                <p>Após confirmar, o boleto será gerado para pagamento.</p>
+                <button type="button" onclick="generateBoleto()">Gerar Boleto</button>
+            </div>
+        </form>
+
+        <div id="mensagem" class="mensagem"></div>
+    </main>
+
+    <footer>
+        <p>&copy; INDIGO BLUE STORE</p>
+    </footer>
+
+    <script>
+        function showDetails(paymentType) {
+            document.querySelectorAll('.payment-details').forEach(detail => detail.style.display = 'none');
+            document.getElementById(paymentType).style.display = 'block';
+        }
+
+        function generateBoleto() {
+            alert("Boleto gerado com sucesso! Você pode imprimi-lo para pagamento.");
+        }
+
+        document.getElementById('form-pagamento').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const mensagem = document.getElementById('mensagem');
+            mensagem.innerText = "Pagamento realizado com sucesso!";
+            mensagem.classList.add('sucesso');
+
+            localStorage.removeItem('carrinho');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

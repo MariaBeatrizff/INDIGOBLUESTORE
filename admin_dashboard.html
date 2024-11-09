@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>  
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .welcome-message {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #d1d1e0;
+        }
+
+        .sidebar h3 {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #d1d1e0;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #3a0068;
+        }
+
+        .sidebar .logout-button {
+            background-color: #d9534f;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1em;
+        }
+
+        .sidebar .logout-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            color: #4f51b5;
+            margin-bottom: 20px;
+        }
+
+        /* Informações importantes */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .info-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: calc(33% - 20px);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box h3 {
+            font-size: 1.2em;
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <h2>Olá, Juliana</h2>
+            <p class="welcome-message">Seja bem-vinda! Fique por dentro das novidades da loja.</p>
+            <img src="avatar.png" alt="Avatar" style="width:100px; border-radius: 50%; margin: 10px 0;">
+            <h3>Função: CEO</h3>
+            <a href="admin_dashboard.html">Início</a>
+            <a href="financeiro.html">Financeiro</a>
+            <a href="estoque.html">Estoque</a>
+            <a href="producao.html">Pedidos em Produção</a>
+            <a href="funcionarios.html">Gerenciar Funcionários</a>
+        </div>
+        
+        <!-- Botão de sair -->
+        <button class="logout-button" onclick="logout()">Sair</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Dashboard</h1>
+
+        <!-- Informações importantes -->
+        <div class="info-section">
+            <div class="info-box">
+                <h3>Estoque Crítico</h3>
+                <p> 2 itens estão com estoque abaixo do nível mínimo. Verifique o estoque e faça pedidos de reposição.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Pedidos Pendentes</h3>
+                <p>Atualmente, há 3 pedidos em produção.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Últimos Acessos</h3>
+                <p>Supanut hoje, às 9h30<br>Topten: ontem, às 18h45</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Meta de Vendas</h3>
+                <p>Você atingiu 75% da meta mensal de vendas. Faltam R$15.000 para alcançar o objetivo.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Novos Funcionários</h3>
+                <p>Bem-vindo(a) Jeff e Maria, os novos integrantes da equipe de atendimento.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função de logout
+        function logout() {
+            window.location.href = "index.html"; // Redireciona para a página inicial após o logout
+        }
+    </script>
+
+</body>
+</html>
